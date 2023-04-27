@@ -110,3 +110,4 @@ LoadPlugin syslog
 1. 驗證openjdk安裝程序
 
 ### 編輯記錄
+2023/4/27
