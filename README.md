@@ -86,7 +86,12 @@ $ vim /etc/collectd.conf
         LogLevel info
 </Plugin>
  ```
-  
+ 在60 61行
+``` 
+LoadPlugin logfile
+LoadPlugin syslog 
+ ```
+ Load Plugin logfile要寫在前面
  
 ### Jmeter
 
