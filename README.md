@@ -201,7 +201,9 @@ https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monit
 
 3. Tomcat 啟動教學 \
  
-4. jmeter測試
+4. jmeter測試 \
+ 
+5. cloudwatch沒有將collectd數據推上去
 
  
 #### 附錄
