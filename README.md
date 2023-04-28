@@ -127,8 +127,10 @@ LoadPlugin syslog
 ```
 其中需要更改 <ins>**your-CloudWatch-log-group-name** </ins> \
 (5)
- 
- 
+# CloudWatch 需要特別建立IAM rule or user ， 一定要！！！ \
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent-commandline.html
+#  加上Iam role
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role
  
  <ins>underline</ins>
  
