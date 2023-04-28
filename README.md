@@ -98,16 +98,19 @@ LoadPlugin syslog
 ### CloudWatch相關設定
 
 ### 參考資料
-[1] https://aws.amazon.com/tw/blogs/mt/deliver-java-jmx-statistics-to-amazon-cloudwatch-using-the-cloudwatch-agent-and-collectd/
-[2] https://blog.yslifes.com/archives/2413
-[3] https://collectd.org
+[1] https://aws.amazon.com/tw/blogs/mt/deliver-java-jmx-statistics-to-amazon-cloudwatch-using-the-cloudwatch-agent-and-collectd/ \
+[2] https://blog.yslifes.com/archives/2413 \
+[3] https://collectd.org \
 [4]
 
 ### 最後編輯時間
-
+2023/4/27
 
 ### 待做事項
 1. 驗證openjdk安裝程序
 
-### 編輯記錄
-2023/4/27
+2. Tomcat systemd設定
+
+3. Tomcat 啟動教學
+
+</Plugin>  
