@@ -124,7 +124,7 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a start /
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a stop // 停止
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status // 檢查狀態
  ```
- 4. ```$ sudo vim /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d```  \
+ 4. ```$ sudo vim /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d/default```  \
  在metrics_collectd後 \
  ** 加入 "collectd": { "metrics_aggregation_interval": 60, \
                 "name_prefix": "petsearch_", "collectd_security_level": "none" }  
