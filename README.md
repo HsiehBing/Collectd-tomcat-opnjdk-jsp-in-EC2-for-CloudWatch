@@ -104,10 +104,10 @@ LoadPlugin syslog
 
 ### CloudWatch相關設定
 
-* CloudWatch 需要特別建立IAM rule or user ， 一定要！！！ 
-https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent-commandline.html
-#  加上Iam role
-https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role
+* CloudWatch 需要特別建立IAM rule or user [4]， 一定要！！！ 
+
+* 加上IAM role[5]
+
  
  
 
@@ -123,11 +123,12 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.htm
  https://blog.yslifes.com/archives/2413 \
 [3] Collectd官方文件 \
  https://collectd.org \
-[4] SSM Agent 日誌傳送至 CloudWatch Logs \
- https://docs.aws.amazon.com/zh_tw/systems-manager/latest/userguide/monitoring-ssm-agent.html \
-[5] CloudWatch 非官方超明確指南\
-https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monitor-installation-and-teaching/ \
-[6] \
+[4] Create IAM roles and users for use with CloudWatch agent\
+ https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent-commandline.html\
+[5] IAM roles for Amazon EC2\
+ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role \
+[6] CloudWatch 非官方超明確指南\
+https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monitor-installation-and-teaching/ \\
 [7] \
 
 ### 最後編輯時間
