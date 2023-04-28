@@ -141,7 +141,8 @@ LoadPlugin syslog
  https://collectd.org \
 [4] SSM Agent 日誌傳送至 CloudWatch Logs \
  https://docs.aws.amazon.com/zh_tw/systems-manager/latest/userguide/monitoring-ssm-agent.html \
-[5] \
+[5] CloudWatch 非官方超明確指南\
+https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monitor-installation-and-teaching/ \
 [6] \
 [7] \
 
