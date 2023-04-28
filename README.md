@@ -107,7 +107,20 @@ LoadPlugin syslog
 * CloudWatch 需要特別建立IAM rule or user [4]， 一定要！！！ 
 
 * 加上IAM role[5]
-
+* 安裝詳細流程可以參考[6]
+1. 安裝CloudWatch ```$ sudo yum -y install amazon-cloudwatch-agent```
+2. 執行agent \
+ ```$ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard```
+3. 安裝後啟動、停止
+ ```
+sudo apt-get update && sudo apt-get install collectd -y // 安裝 collectd
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard // 使用精靈產生設定檔或是直接放入設定檔到 /opt/aws/amazon-cloudwatch-agent/bin/config.json
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s // 重新啟動 CloudWatch Agent 並且使用本地 json 設定檔
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:configuration-parameter-store-name -s // 啟動 CloudWatch Agent 並且使用本地 SSM 設定檔
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a start // 開啟
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a stop // 停止
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status // 檢查狀態
+ ```
  
  
 
