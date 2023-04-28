@@ -8,9 +8,9 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 ### 測試環境：
 開一台t2.micro + tomcat + openjdk
 
-然後弄個jsp檔案上去，用jmeter做壓力測試
+以tomcat預設網頁做基礎，用jmeter做壓力測試
 
-目標是能把metrics輸出到cloudwath log
+目標是能把metrics輸出到cloudＷatch log
 
 ## 相關設定
 
@@ -18,17 +18,18 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 1. 在AWS開啟EC2主機AMI為Linux
 2. 在環境中安裝openjdk ```sudo yum -y install openjdk ```
 3. 以wget下載tomcat
-4. 下載collectd  ```sudo yum -y install collectd collectd-java collectd-genetic-jmx ```
-5. 下載 ``` sudo yum -y install amazon-clouwatch-agent  ``` 
+4. 下載collectd  
+5. 下載cloudwatch-agent  
 6. 至CloudWatch查看結果
-7. Jmeter並進行壓力測試
+7. 以Jmeter進行壓力測試，並觀察是否輸出數據
 
 
 ### jsp製作
-
+因為是以tomcat預測網頁進行測試，所以沒有特別製作jsp，\
+不過會在參考資料附設相關網址
 
 ### openjdk設定
-``` sudo yum install java- ```
+``` sudo yum install java-11-openjdk ```
 
 ### Tomcat設定 參考並修改[2]
 1. 使用wget取得資料
@@ -74,9 +75,12 @@ $ vim /opt/tomcat/apache-tomcat-9.0.74
  設定完後就可以啟動tomcat中並以port8080開啟Tomcat
   例如 \
   ```142.251.222.46|142.251.222.46```
+ 
+ 4. 啟動Tomcat預設port為8080
+ ```$ sudo /opt/tomcat/apache-tomcat-9.0.74/bin/startup.sh```
 
 ### collectd設定[3]
-  
+```$ sudo yum -y install collectd collectd-java collectd-genetic-jmx ```
 ```
 $ vim /etc/collectd.conf
 ```
@@ -191,11 +195,13 @@ https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monit
 2023/4/28
 
 ### 待做事項
-1. 驗證openjdk安裝程序
+1. 驗證openjdk安裝程序 \
 
-2. Tomcat systemd設定
+2. Tomcat systemd設定 \
 
-3. Tomcat 啟動教學
+3. Tomcat 啟動教學 \
+ 
+4. jmeter測試
 
  
 #### 附錄
