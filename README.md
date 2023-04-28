@@ -163,7 +163,9 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status 
  6. 根據步驟3指令停止再開啟， \
  開啟後可以觀察amazon-cloudwatch有沒有連至設定的port(預設25826) \
  ``` $ sudo netstat -tulnp ```
- 7. 可以至 **CloudWatch
+ 7. 可以至 **CloudWatch** 中在側邊欄位選擇 **All metrics** \
+ 在資料夾中選取 **CWAgent** ，中 **InstanceId**,**InstanceType**,**instance**,**type**,**type_instance** ， \
+ 在Metric名稱中如果有 **petsearch_GenericJMX_value** 就是從Collectd監測到的資料。
 
 
 
@@ -186,7 +188,7 @@ https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monit
 [7] \
 
 ### 最後編輯時間
-2023/4/27
+2023/4/28
 
 ### 待做事項
 1. 驗證openjdk安裝程序
