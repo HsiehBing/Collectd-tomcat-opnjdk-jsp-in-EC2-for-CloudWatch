@@ -20,8 +20,8 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 3. 以wget下載tomcat
 4. 下載collectd  ```sudo yum -y install collectd collectd-java collectd-genetic-jmx ```
 5. 下載 ``` sudo yum -y install amazon-clouwatch-agent  ``` 
-6. 下載Jmeter並進行測試
-7. 至CloudWatch查看結果
+6. 至CloudWatch查看結果
+7. Jmeter並進行壓力測試
 
 
 ### jsp製作
@@ -59,7 +59,6 @@ $ chown tomcat:tomcat /opt/tomcat/apache-tomcat-9.0.74/bin/setenv.sh
  * 增加使用者
 ```
 $ vim /opt/tomcat/apache-tomcat-9.0.74
-
 ```
 在最後</tomcat-users>上方新增
 ```
@@ -74,7 +73,7 @@ $ vim /opt/tomcat/apache-tomcat-9.0.74
  到最後幾列尋找<Valve className=....> 下的allow=""，將自己的public IP加入，如果有多組IP可由｜分隔 \
  設定完後就可以啟動tomcat中並以port8080開啟Tomcat
   例如 \
-  ```142.251.222.46:8080```
+  ```142.251.222.46|142.251.222.46```
 
 ### collectd設定[3]
   
@@ -120,6 +119,45 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-c
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a start // 開啟
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a stop // 停止
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status // 檢查狀態
+ ```
+ 4. ```$ sudo vim /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d``` 
+ ```
+        "metrics_collected": {
+            "collectd": { "metrics_aggregation_interval": 60,
+                "name_prefix": "petsearch_", "collectd_security_level": "none"
+            },
+            "disk": {
+                "measurement": [
+                    "used_percent"
+                ],
+                "metrics_collection_interval": 60,
+                "resources": [
+                    "*"
+                ]
+            },
+            "mem": {
+                "measurement": [
+                    "mem_used_percent"
+                ],
+                "metrics_collection_interval": 60
+            }
+ ``` 
+ ** 加入 "collectd": { "metrics_aggregation_interval": 60,
+                "name_prefix": "petsearch_", "collectd_security_level": "none" **  \
+ 
+ 5. ```$ sudo vim /opt/aws/amazon-cloudwatch-agent/etc/amazon-clouwatch-agent.toml``` \
+ 在文件中 將[[inputs.socket_listener]]置於[[inputs]]下
+ ```
+  [[inputs.socket_listener]]
+    collectd_auth_file = "/etc/collectd/auth_file"
+    collectd_security_level = "none"
+    collectd_typesdb = ["/usr/share/collectd/types.db"]
+    data_format = "collectd"
+    name_prefix = "myapp_"
+    service_address = "udp://127.0.0.1:25826"
+    [inputs.socket_listener.tags]
+      "aws:AggregationInterval" = "60s"
+      metricPath = "metrics" 
  ```
  
  
