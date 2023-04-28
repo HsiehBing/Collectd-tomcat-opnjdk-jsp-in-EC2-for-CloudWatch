@@ -101,39 +101,21 @@ LoadPlugin syslog
  ```
  Load Plugin logfile要寫在前面
  另外要在最後加上附錄[1]
-### Jmeter
-# 這邊開始不太確定，需要再確認
-### CloudWatch相關設定
- 
-1. 在/opt/amw/amazon-cloudwatch-agent/doc中增加附錄[2]
- 
-2. 設定將資料儲存於Amazon Systems Manager Parameter Store (SSM)\
- 目的是將資料透過SSM agent日誌傳送至CloudWatch Logs [4] \
- (1) 找出節點 ``` $ /etc/amazon/ssm/seelog.xml.template ``` \
- (2) 將檔案名稱由 ```seelog.xml.template``` 變更為 ```seelog.xml``` \
- (3)於CloudWatch -> Logs -> Log groups 建立一個群組“Bing-collectd-test”
- (4) 開啟```seelog.xml```編輯檔案，在 </filter> 結束標籤後面新增自訂名稱元素。\
- 在以下範例中，自訂名稱已指定為 cloudwatch_receiver \
- ```
- <outputs formatid="fmtinfo">
-   <console formatid="fmtinfo"/>
-   <rollingfile type="size" filename="/var/log/amazon/ssm/amazon-ssm-agent.log" maxsize="30000000" maxrolls="5"/>
-   <filter levels="error,critical" formatid="fmterror">
-      <rollingfile type="size" filename="/var/log/amazon/ssm/errors.log" maxsize="10000000" maxrolls="5"/>
-   </filter>
-   <custom name="cloudwatch_receiver" formatid="fmtdebug" data-log-group="your-CloudWatch-log-group-name"/>
-</outputs> 
 
-```
-其中需要更改 <ins>**your-CloudWatch-log-group-name** </ins> \
-(5)
-# CloudWatch 需要特別建立IAM rule or user ， 一定要！！！ \
+### CloudWatch相關設定
+
+* CloudWatch 需要特別建立IAM rule or user ， 一定要！！！ 
 https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent-commandline.html
 #  加上Iam role
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role
  
- <ins>underline</ins>
  
+
+
+
+### Jmeter
+
+
 ### 參考資料
 [1] Deliver Java JMX statistics to Amazon CloudWatch using the CloudWatch Agent and CollectD \
  https://aws.amazon.com/tw/blogs/mt/deliver-java-jmx-statistics-to-amazon-cloudwatch-using-the-cloudwatch-agent-and-collectd/ \
