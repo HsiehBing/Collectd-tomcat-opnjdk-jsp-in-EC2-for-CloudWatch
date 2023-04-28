@@ -32,7 +32,7 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 
 ### Tomcat設定 參考並修改[2]
 1. 使用wget取得資料
-```$ cd /tmp & wget -c https://downloads.apache.org/tomcat/tomcat-9/v9.0.74/bin/apache-tomcat-9.0.74.tar.gz``
+```$ cd /tmp & wget -c https://downloads.apache.org/tomcat/tomcat-9/v9.0.74/bin/apache-tomcat-9.0.74.tar.gz ```
 下載前請先至https://downloads.apache.org/tomcat/tomcat-9/ 確認版本，並在更改後進行下載
 
 2. 解壓縮並修改目錄user及group
@@ -41,8 +41,8 @@ $ sudo tar -zxf /tmp/apache-tomcat-*.tar.gz -C /opt
 $ sudo ln -s /opt/apache-tomcat-* /opt/tomcat
 $ sudo chown -hR tomcat: /opt/tomcat /opt/apache-tomcat-*
 ```
-3.參考文章中是建立systemd，但是這邊只是為了測試，所以直接啟動， \
-啟動前需要至做三件事情
+3. 參考文章中是建立systemd，但是這邊只是為了測試，所以直接啟動， \
+啟動前需要做三件事情
  * 建立啟動環境
  ```
 $ vim /opt/tomcat/apache-tomcat-9.0.74/bin/setenv.sh 
