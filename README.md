@@ -1,7 +1,7 @@
 ## 緣起: 
 Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中的虛擬參數(CPU, RAM.....)， \
-但是可以透過node-exporter串接prometheus及grafana並輸出至CloudWatch中取得其數據，在2022八月AWS官方釋出文件[1] \
-介紹可以直接透過CollectD將JVM的數據直接傳至CloudWatch。
+但是可以透過node-exporter串接prometheus及grafana並輸出至CloudWatch中取得其數據， \
+在2022八月AWS官方釋出文件[1]，介紹可以直接透過CollectD將JVM的數據直接傳至CloudWatch。 \
 
 <font color="Red">但是在文件中有許多細節並未說明清楚，因此將過程中會遇到的問題進行統整，以便之後能夠更方便上手</font>
 
