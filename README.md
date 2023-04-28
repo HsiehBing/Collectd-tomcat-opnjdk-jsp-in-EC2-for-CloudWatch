@@ -120,7 +120,10 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a start /
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a stop // 停止
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status // 檢查狀態
  ```
- 4. ```$ sudo vim /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d``` 
+ 4. ```$ sudo vim /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d```  \
+ 在metrics_collectd後 \
+ ** 加入 "collectd": { "metrics_aggregation_interval": 60, \
+                "name_prefix": "petsearch_", "collectd_security_level": "none" }  
  ```
         "metrics_collected": {
             "collectd": { "metrics_aggregation_interval": 60,
@@ -142,8 +145,6 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status 
                 "metrics_collection_interval": 60
             }
  ``` 
- ** 加入 "collectd": { "metrics_aggregation_interval": 60,
-                "name_prefix": "petsearch_", "collectd_security_level": "none" **  \
  
  5. ```$ sudo vim /opt/aws/amazon-cloudwatch-agent/etc/amazon-clouwatch-agent.toml``` \
  在文件中 將[[inputs.socket_listener]]置於[[inputs]]下
@@ -159,8 +160,10 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status 
       "aws:AggregationInterval" = "60s"
       metricPath = "metrics" 
  ```
- 
- 
+ 6. 根據步驟3指令停止再開啟， \
+ 開啟後可以觀察amazon-cloudwatch有沒有連至設定的port(預設25826) \
+ ``` $ sudo netstat -tulnp ```
+ 7. 可以至 **CloudWatch
 
 
 
