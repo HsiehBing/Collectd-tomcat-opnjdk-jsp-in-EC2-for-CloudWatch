@@ -8,9 +8,9 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 ### 測試環境：
 開一台t2.micro + tomcat + openjdk
 
-然後弄個jsp檔案上去，用jmeter去壓一
+然後弄個jsp檔案上去，用jmeter做壓力測試
 
-主要是看能不能把metrics輸出到cloudwath log
+目標是能把metrics輸出到cloudwath log
 
 ## 相關設定
 
@@ -102,14 +102,48 @@ LoadPlugin syslog
  Load Plugin logfile要寫在前面
  另外要在最後加上附錄[1]
 ### Jmeter
-
+# 這邊開始不太確定，需要再確認
 ### CloudWatch相關設定
+ 
+1. 在/opt/amw/amazon-cloudwatch-agent/doc中增加附錄[2]
+ 
+2. 設定將資料儲存於Amazon Systems Manager Parameter Store (SSM)\
+ 目的是將資料透過SSM agent日誌傳送至CloudWatch Logs [4] \
+ (1) 找出節點 ``` $ /etc/amazon/ssm/seelog.xml.template ``` \
+ (2) 將檔案名稱由 ```seelog.xml.template``` 變更為 ```seelog.xml``` \
+ (3)於CloudWatch -> Logs -> Log groups 建立一個群組“Bing-collectd-test”
+ (4) 開啟```seelog.xml```編輯檔案，在 </filter> 結束標籤後面新增自訂名稱元素。\
+ 在以下範例中，自訂名稱已指定為 cloudwatch_receiver \
+ ```
+ <outputs formatid="fmtinfo">
+   <console formatid="fmtinfo"/>
+   <rollingfile type="size" filename="/var/log/amazon/ssm/amazon-ssm-agent.log" maxsize="30000000" maxrolls="5"/>
+   <filter levels="error,critical" formatid="fmterror">
+      <rollingfile type="size" filename="/var/log/amazon/ssm/errors.log" maxsize="10000000" maxrolls="5"/>
+   </filter>
+   <custom name="cloudwatch_receiver" formatid="fmtdebug" data-log-group="your-CloudWatch-log-group-name"/>
+</outputs> 
 
+```
+其中需要更改 <ins>**your-CloudWatch-log-group-name** </ins> \
+(5)
+ 
+ 
+ 
+ <ins>underline</ins>
+ 
 ### 參考資料
-[1] https://aws.amazon.com/tw/blogs/mt/deliver-java-jmx-statistics-to-amazon-cloudwatch-using-the-cloudwatch-agent-and-collectd/ \
-[2] https://blog.yslifes.com/archives/2413 \
-[3] https://collectd.org \
-[4]
+[1] Deliver Java JMX statistics to Amazon CloudWatch using the CloudWatch Agent and CollectD \
+ https://aws.amazon.com/tw/blogs/mt/deliver-java-jmx-statistics-to-amazon-cloudwatch-using-the-cloudwatch-agent-and-collectd/ \
+[2] centos 7 安裝tomcat 8.5 \
+ https://blog.yslifes.com/archives/2413 \
+[3] Collectd官方文件 \
+ https://collectd.org \
+[4] SSM Agent 日誌傳送至 CloudWatch Logs \
+ https://docs.aws.amazon.com/zh_tw/systems-manager/latest/userguide/monitoring-ssm-agent.html \
+[5] \
+[6] \
+[7] \
 
 ### 最後編輯時間
 2023/4/27
@@ -313,3 +347,58 @@ LoadPlugin java
   </Plugin>
 </Plugin>
 ```
+[2] CloudWatch shecma設定
+```
+ {
+    "agent": {
+        "metrics_collection_interval": 60,
+        "run_as_user": "root"
+    },
+    "logs": {
+        "logs_collected": {
+            "files": {
+                "collect_list": [
+                    {
+                            "file_path": "/var/log/messages",
+                            "log_group_name": "messages",
+                            "log_stream_name": "{instance_id}"
+                    }
+                ]
+            }
+        }
+    },
+    "metrics": {
+        "aggregation_dimensions": [
+            [
+                "InstanceId"
+            ]
+        ],
+        "append_dimensions": {
+            "AutoScalingGroupName": "${aws:AutoScalingGroupName}",
+            "ImageId": "${aws:ImageId}",
+            "InstanceId": "${aws:InstanceId}",
+            "InstanceType": "${aws:InstanceType}"
+        },
+        "metrics_collected": {
+            "collectd": { "metrics_aggregation_interval": 60,
+                "name_prefix": "petsearch_", "collectd_security_level": "none"
+            },
+            "disk": {
+                "measurement": [
+                    "used_percent"
+                ],
+                "metrics_collection_interval": 60,
+                "resources": [
+                    "*"
+                ]
+            },
+            "mem": {
+                "measurement": [
+                    "mem_used_percent"
+                ],
+                "metrics_collection_interval": 60
+            }
+        }
+    }
+}
+ ```
