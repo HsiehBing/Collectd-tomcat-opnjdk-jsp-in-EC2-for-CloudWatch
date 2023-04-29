@@ -80,7 +80,7 @@ $ vim /opt/tomcat/apache-tomcat-9.0.74
  ```$ sudo /opt/tomcat/apache-tomcat-9.0.74/bin/startup.sh```
 
 ### collectd設定[3]
-```$ sudo yum -y install collectd collectd-java collectd-genetic-jmx ```
+```$ sudo yum -y install collectd collectd-java collectd-generic-jmx ```
 ```
 $ vim /etc/collectd.conf
 ```
