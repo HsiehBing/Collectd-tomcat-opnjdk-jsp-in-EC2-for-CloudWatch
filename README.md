@@ -29,7 +29,7 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 不過會在參考資料附設相關網址
 
 ### openjdk設定
-``` sudo yum install java-11-openjdk ```
+```$ sudo yum install java-11-amazon-corretto  ```
 
 ### Tomcat設定 參考並修改[2]
 1. 使用wget取得資料
@@ -192,18 +192,17 @@ https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monit
 [7] \
 
 ### 最後編輯時間
-2023/4/28
+2023/5/2 
 
 ### 待做事項
-1. 驗證openjdk安裝程序 \
 
-2. Tomcat systemd設定 \
+1. Tomcat systemd設定 \
 
-3. Tomcat 啟動教學 \
+2. Tomcat 啟動教學 \
  
-4. jmeter測試 \
+3. jmeter測試 \
  
-5. cloudwatch沒有將collectd數據推上去
+4. cloudwatch沒有將collectd數據推上去
 
  
 #### 附錄
