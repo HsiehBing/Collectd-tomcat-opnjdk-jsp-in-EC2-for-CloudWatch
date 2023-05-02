@@ -35,6 +35,8 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 1. 使用wget取得資料
 ```$ cd /tmp & wget -c https://downloads.apache.org/tomcat/tomcat-9/v9.0.74/bin/apache-tomcat-9.0.74.tar.gz ```
 下載前請先至https://downloads.apache.org/tomcat/tomcat-9/ 確認版本，並在更改後進行下載
+2. 建立user及group tomcat
+```$sudo useradd -r tomcat --shell /bin/false```
 
 2. 解壓縮並修改目錄user及group
 ```
