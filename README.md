@@ -49,6 +49,8 @@ $ sudo chown -hR tomcat: /opt/tomcat /opt/apache-tomcat-*
  * 建立啟動環境
  ```
 $ vim /opt/tomcat/apache-tomcat-9.0.74/bin/setenv.sh 
+或者是
+$ vim /opt/tomcat/bin/setenv.sh 
  ```
  設定JMX環境
  ```  
