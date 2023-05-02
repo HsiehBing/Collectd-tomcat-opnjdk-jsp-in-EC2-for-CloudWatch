@@ -63,7 +63,8 @@ $ chown tomcat:tomcat /opt/tomcat/apache-tomcat-9.0.74/bin/setenv.sh
 
  * 增加使用者
 ```
-$ vim /opt/tomcat/apache-tomcat-9.0.74
+$ vim /opt/tomcat/apache-tomcat-9.0.74/conf/tomcat-user.xml
+# 這邊不確定
 ```
 在最後</tomcat-users>上方新增
 ```
