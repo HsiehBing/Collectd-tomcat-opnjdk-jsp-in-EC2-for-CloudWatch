@@ -19,7 +19,7 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 2. Openjdk : java-11-amazon-corretto 
 3. Tomcat : tomcat-9/v9.0.74 
 4. Collectd : colletcd 5.12.0 
-5. Jmeter : apache-jmeter-5.5.zip   
+5. Jmeter : apache-jmeter-5.5   
 
 ### 步驟概述：本小節中會單純描述各個流程，詳細流程可以參考下方製作過程說明
 1. 在AWS開啟EC2主機AMI為Linux
