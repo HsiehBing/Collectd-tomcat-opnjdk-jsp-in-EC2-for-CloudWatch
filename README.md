@@ -251,7 +251,18 @@ HEAP="-Xmx1024m"
  
  
  
+ ###啟動方式整理
  
+ 1. Tomcat 
+ ``` 
+ cd /opt/tomcat/bin
+ ./startup.sh
+ ```
+ 2. CloudWatch \
+ ```sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a start ```
+ 
+ 3. collectd \
+ ```systemctl start collectd```
  
  
  
