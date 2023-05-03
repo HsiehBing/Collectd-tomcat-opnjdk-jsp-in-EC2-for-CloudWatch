@@ -12,8 +12,14 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 
 目標是能把metrics輸出到cloudＷatch log
 
-EC2 AMI : Amazon Linux 2023 AMI 2023.0.20230419.0 x86_64 HVM kernel-6.1
+
 ## 相關設定
+### 版本
+1. EC2 AMI : Amazon Linux 2023 AMI 2023.0.20230419.0 x86_64 HVM kernel-6.1 
+2. Openjdk : java-11-amazon-corretto 
+3. Tomcat : tomcat-9/v9.0.74 
+4. Collectd : colletcd 5.12.0 
+5. Jmeter : apache-jmeter-5.5.zip   
 
 ### 步驟概述：本小節中會單純描述各個流程，詳細流程可以參考下方製作過程說明
 1. 在AWS開啟EC2主機AMI為Linux
@@ -212,8 +218,42 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status 
 
 
 
-### Jmeter
+### Jmeter 
+1. 至 https://dlcdn.apache.org/jmeter/ 確認jmeter 版本
+2. 安裝jmeter[7]
+```
+# download JMeter 5.5
+wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz
 
+# download JMeter 5.5 checksum
+sha512sum apache-jmeter-5.5.tgz
+
+# validate checksum
+if [[ $(cat apache-jmeter-5.5.tgz.sha512 | awk '{print $1}') -eq $(sha512sum apache-jmeter-5.5.tgz | awk '{print $1}') ]] ; then echo "Valid checksum. Proceeding to extract."; else echo "Invalid Checksum, please download it from secured source." ; fi ;
+
+tar -xf apache-jmeter-5.5.tgz
+ 
+cd apache-jmeter-5.5/bin/
+./jmeter -v 
+ ```
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 ### 參考資料
 [1] Deliver Java JMX statistics to Amazon CloudWatch using the CloudWatch Agent and CollectD \
@@ -222,13 +262,15 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status 
  https://blog.yslifes.com/archives/2413 \
 [3] Collectd官方文件 \
  https://collectd.org \
-[4] Create IAM roles and users for use with CloudWatch agent\
- https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent-commandline.html\
+[4] Create IAM roles and users for use with CloudWatch agent \
+ https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent-commandline.html \
 [5] IAM roles for Amazon EC2\
  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role \
 [6] CloudWatch 非官方超明確指南\
-https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monitor-installation-and-teaching/ \\
-[7] \
+ https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monitor-installation-and-teaching/ \
+[7]Install and Launch JMeter GUI on AWS EC2 \
+ https://qainsights.com/install-and-launch-jmeter-gui-on-aws-ec2/ \
+[8]
 
 ### 最後編輯時間
 2023/5/3 
