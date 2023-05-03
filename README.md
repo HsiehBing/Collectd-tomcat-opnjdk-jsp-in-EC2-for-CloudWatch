@@ -238,6 +238,10 @@ cd apache-jmeter-5.5/bin/
  ```
 相關測試概念可以參考[8]
  
+可以至/bin/jmeter 修改RAM的使用量
+```
+HEAP="-Xmx1024m"
+```
  
  
  
