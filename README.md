@@ -234,11 +234,9 @@ if [[ $(cat apache-jmeter-5.5.tgz.sha512 | awk '{print $1}') -eq $(sha512sum apa
 tar -xf apache-jmeter-5.5.tgz
  
 cd apache-jmeter-5.5/bin/
-./jmeter -v 
+./jmeter 
  ```
- 
- 
- 
+相關測試概念可以參考[8]
  
  
  
@@ -270,7 +268,8 @@ cd apache-jmeter-5.5/bin/
  https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monitor-installation-and-teaching/ \
 [7]Install and Launch JMeter GUI on AWS EC2 \
  https://qainsights.com/install-and-launch-jmeter-gui-on-aws-ec2/ \
-[8]
+[8]使用 JMeter 來對 API 壓力測試吧 \
+ https://igouist.github.io/post/2022/10/jmeter/ 
 
 ### 最後編輯時間
 2023/5/3 
