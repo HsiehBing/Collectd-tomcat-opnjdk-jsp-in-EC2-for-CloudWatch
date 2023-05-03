@@ -12,6 +12,7 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 
 目標是能把metrics輸出到cloudＷatch log
 
+EC2 AMI : Amazon Linux 2023 AMI 2023.0.20230419.0 x86_64 HVM kernel-6.1
 ## 相關設定
 
 ### 步驟概述：本小節中會單純描述各個流程，詳細流程可以參考下方製作過程說明
@@ -230,7 +231,7 @@ https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monit
 [7] \
 
 ### 最後編輯時間
-2023/5/2 
+2023/5/3 
 
 ### 待做事項
 
