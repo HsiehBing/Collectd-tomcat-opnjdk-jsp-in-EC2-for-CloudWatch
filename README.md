@@ -134,6 +134,36 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status 
  ** 加入 "collectd": { "metrics_aggregation_interval": 60, \
                 "name_prefix": "petsearch_", "collectd_security_level": "none" }  
  ```
+       {
+    "agent": {
+        "metrics_collection_interval": 60,
+        "run_as_user": "root"
+    },
+    "logs": {
+        "logs_collected": {
+            "files": {
+                "collect_list": [
+                    {
+                            "file_path": "/var/log/messages",
+                            "log_group_name": "messages",
+                            "log_stream_name": "{instance_id}"
+                    }
+                ]
+            }
+        }
+    },
+    "metrics": {
+        "aggregation_dimensions": [
+            [
+                "InstanceId"
+            ]
+        ],
+        "append_dimensions": {
+            "AutoScalingGroupName": "${aws:AutoScalingGroupName}",
+            "ImageId": "${aws:ImageId}",
+            "InstanceId": "${aws:InstanceId}",
+            "InstanceType": "${aws:InstanceType}"
+        },
         "metrics_collected": {
             "collectd": { "metrics_aggregation_interval": 60,
                 "name_prefix": "petsearch_", "collectd_security_level": "none"
@@ -153,6 +183,9 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status 
                 ],
                 "metrics_collection_interval": 60
             }
+        }
+    }
+}
  ``` 
  
  5. ```$ sudo vim /opt/aws/amazon-cloudwatch-agent/etc/amazon-clouwatch-agent.toml``` \
@@ -218,7 +251,7 @@ https://blog.clarence.tw/2019/08/10/use-cloudwatch-agent-add-ec2-instances-monit
     Server "127.0.0.1" "25826"
 </Plugin>
 
-LoadPlugin java
+#LoadPlugin java
 <Plugin java>
 # JVMArg "-verbose:jni"
   JVMArg "-Djava.class.path=/usr/share/collectd/java/collectd-api.jar:/usr/share/collectd/java/generic-jmx.jar"
