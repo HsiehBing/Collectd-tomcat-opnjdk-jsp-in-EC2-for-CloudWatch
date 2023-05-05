@@ -39,8 +39,8 @@ Java Web的使用會透過JVM啟動，但是在CloudWatch中無法取得JVM中�
 ```$ sudo yum install java-11-amazon-corretto  ```
 
 ### Tomcat設定 參考並修改[2]
-1. 使用wget取得資料
-```$ cd /tmp & wget -c https://downloads.apache.org/tomcat/tomcat-9/v9.0.74/bin/apache-tomcat-9.0.74.tar.gz ```
+1. 使用wget取得資料 \
+```$ cd /tmp & wget -c https://downloads.apache.org/tomcat/tomcat-9/v9.0.74/bin/apache-tomcat-9.0.74.tar.gz ``` \
 下載前請先至https://downloads.apache.org/tomcat/tomcat-9/ 確認版本，並在更改後進行下載
 2. 建立user及group tomcat \
 ```$sudo useradd -r tomcat --shell /bin/false```
@@ -287,21 +287,18 @@ HEAP="-Xmx1024m"
  https://igouist.github.io/post/2022/10/jmeter/ 
 
 ### 最後編輯時間
-2023/5/3 
+2023/5/5 
 
 ### 待做事項
 
 1. Tomcat systemd設定 \
-
-2. Tomcat 啟動教學 \
  
-3. jmeter測試 \
- 
-4. cloudwatch沒有將collectd數據推上去
+2. jmeter測試 \
 
  
 #### 附錄
- [1]置於/etc/collectd/collectd.conf最後(路徑也有可能是/etc/collectd.conf)
+ [1]置於/etc/collectd/collectd.conf最後(路徑也有可能是/etc/collectd.conf) \
+ 有更改LoadPlugin java，詳細原因可以參考 Issues
  ```
  LoadPlugin network
 <Plugin network>
