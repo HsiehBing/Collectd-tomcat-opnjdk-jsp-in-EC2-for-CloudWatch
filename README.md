@@ -244,14 +244,7 @@ HEAP="-Xmx1024m"
 ```
  
  
- 
- 
- 
- 
- 
- 
- 
- ###啟動方式整理
+ ### 啟動方式整理
  
  1. Tomcat 
  ``` 
@@ -265,8 +258,20 @@ HEAP="-Xmx1024m"
  ```systemctl start collectd```
  
  
- 
- 
+ ### CloudWatch預警系統
+ 1.至AWS CloudWatch，選擇右側All alarms，點選Create alarm \
+ 2.首先選取Metric，由collectd匯出之資料可以由CloudWatch右側All metrics-> CWAgent中取得 \
+ 3.在Step 1 中可以選擇**Metric**中可以修改Statics 以及 Period，Conditions則可以選擇Static 或者Anomaly detection，最後輸入要監控的值\
+ 4.選擇要預警通知方法，這邊可以選擇超出警戒值(In alarm)、低於警戒值(OK)、數據不足(Insufficient data)，並選擇要通知的方式，這邊選擇SNS通知\
+ * 建立SNS通知 \
+ (1)另開分頁至Amazon SNS -> 點選Create topic \
+ (2)選擇FIFO或者Standard，輸入名稱 \
+ (3)選擇Subscription，在Protocol選擇E-mail，輸入要通知的E-mail後選擇Create subscription \
+ (4)至信箱收取驗證信，要驗證過才會將預警信寄至該信箱 \
+ 5.回到CloudWatch Alarms設定頁面，將剛剛設定好的SNS加入至"Send a notification to..."，可以選擇是否使用Auto Scaling action或者EC2 action \
+ 6.建立Alarm名稱，建議為 {警戒等級}-{公司名稱}-{服務項目}-{機器名稱}-{監控指數}
+ 7.選擇Creat alarm即可建立CloudWatch預警通知
+ 8.若需要多重條件可以在建立CloudWatch 後選擇Create composite alarm 可以選擇 And 或者Or進行條件確認
 
 ### 參考資料
 [1] Deliver Java JMX statistics to Amazon CloudWatch using the CloudWatch Agent and CollectD \
@@ -287,7 +292,7 @@ HEAP="-Xmx1024m"
  https://igouist.github.io/post/2022/10/jmeter/ 
 
 ### 最後編輯時間
-2023/5/ 
+2023/6/2 
 
 ### 待做事項
 
