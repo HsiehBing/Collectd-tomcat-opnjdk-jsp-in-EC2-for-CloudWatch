@@ -270,9 +270,9 @@ HEAP="-Xmx1024m"
  (4)至信箱收取驗證信，要驗證過才會將預警信寄至該信箱 \
  
 5.回到CloudWatch Alarms設定頁面，將剛剛設定好的SNS加入至"Send a notification to..."，可以選擇是否使用Auto Scaling action或者EC2 action \
-6.建立Alarm名稱，建議為 {警戒等級}-{公司名稱}-{服務項目}-{機器名稱}-{監控指數}
-7.選擇Creat alarm即可建立CloudWatch預警通知
-8.若需要多重條件可以在建立CloudWatch 後選擇Create composite alarm 可以選擇 And 或者Or進行條件確認
+6.建立Alarm名稱，建議為 {警戒等級}-{公司名稱}-{服務項目}-{機器名稱}-{監控指數} \
+7.選擇Creat alarm即可建立CloudWatch預警通知 \
+8.若需要多重條件可以在建立CloudWatch 後選擇Create composite alarm 可以選擇 And 或者Or進行條件確認 
 
 ### 參考資料
 [1] Deliver Java JMX statistics to Amazon CloudWatch using the CloudWatch Agent and CollectD \
