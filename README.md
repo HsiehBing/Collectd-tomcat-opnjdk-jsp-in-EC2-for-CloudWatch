@@ -61,7 +61,7 @@ $ vim /opt/tomcat/bin/setenv.sh
  ```
  設定JMX環境
  ```  
--Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false  
+CATALINA_OPTS="-Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
 ```
 
 ```
@@ -82,6 +82,8 @@ $ vim /opt/tomcat/apache-tomcat-9.0.74/conf/tomcat-user.xml
  * 增加IP位址
  ```
  $ vim opt/tomcat/apache-tomcat-9.0.74/webapps/manager/META-INF/tomcat-user.xml
+ 或者
+ $ vim opt/tomcat/apache-tomcat-9.0.74/webapps/manager/META-INF/context.xml
  ```
  到最後幾列尋找<Valve className=....> 下的allow=""，將自己的public IP加入，如果有多組IP可由｜分隔 \
  設定完後就可以啟動tomcat中並以port8080開啟Tomcat
@@ -293,7 +295,7 @@ HEAP="-Xmx1024m"
  https://igouist.github.io/post/2022/10/jmeter/ 
 
 ### 最後編輯時間
-2023/6/2 
+2023/6/9
 
 ### 待做事項
 
